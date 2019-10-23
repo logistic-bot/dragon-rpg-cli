@@ -1,3 +1,0 @@
-[flake8]
-ignore = Q000,T0,WPS421,S322,C813,S311,P103,C101,WPS306,EXE001
-max-line-length = 80
