@@ -5,9 +5,9 @@ The main file of the Dragon RPG.
 
 E V E R Y T H I N G is happening from this file
 """
-from src.chapters.chapter1 import chapter1
-from src.dragon import Dragon
-from src import utils
+from chapters.chapter1 import chapter1
+from dragon import Dragon
+import utils
 
 
 if __name__ == "__main__":
@@ -21,7 +21,11 @@ if __name__ == "__main__":
     print("Please chose a title for you character.")
     print("It will be used in letters.")
     TITLE = input("title> ")
+    print()
+    print()
     print("----------------------------------------")
+    print()
+    print()
 
     PLAYER = Dragon(name=NAME, title=TITLE)
 

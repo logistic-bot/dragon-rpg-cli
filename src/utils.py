@@ -2,6 +2,7 @@
 This module provides utils functions for the game, such as copyright notice
 """
 
+
 def _print_legal_stuff():
     """Returns legal copyright notice and license information."""
     return """Copyright 2019 Khaïs COLIN
