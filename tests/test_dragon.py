@@ -1,35 +1,57 @@
-import src.dragon
 import pytest
+from hypothesis import given, assume
+from hypothesis.strategies import integers
+from hypothesis.strategies import text
+
+import src.dragon
 
 
 @pytest.fixture()
 def dragon():
-    return src.dragon.Dragon(name="Test Dragon", title="The Greatest Testing Dragon in town", max_health_max=100, max_health_min=1)
+    return src.dragon.Dragon(name="Test Dragon", title="The Greatest Testing Dragon in town",
+                             max_health_max=100, max_health_min=1)
 
 
-def test_atirbutes_are_correct(dragon):
-    assert dragon.name == "Test Dragon"
-    assert dragon.title == "The Greatest Testing Dragon in town"
-    assert dragon.max_health <= 100
-    assert dragon.max_health >= 1
+@given(sample_name=text(), sample_title=text(), sample_health_max=integers(2, 10000000),
+       sample_health_min=integers(1, 10000000))
+def test_attributes_are_correct(sample_name, sample_title, sample_health_max, sample_health_min):
+    # assume
+    assume(sample_health_max >= sample_health_min)
+
+    # setup
+    sample_dragon = src.dragon.Dragon(sample_name, sample_title, sample_health_min, 
+                                      sample_health_max)
+
+    # act
+
+    # assert
+    assert sample_dragon.name == sample_name
+    assert sample_dragon.title == sample_title
+    assert sample_dragon.max_health <= sample_health_max
+    assert sample_dragon.max_health >= sample_health_min
 
 
-def test_greet(dragon):
-    assert dragon._greet() in [
-            "I bow down to you, Test Dragon.",
-            "I bid you welcome, Test Dragon, to my game.",
-            "Hello again, Test Dragon.",
-            "Hello Test Dragon!",
-            "Hello, Test Dragon.",
-            "Hello and, again, welcome to my game Test Dragon",
-            "I bow down to you, The Greatest Testing Dragon in town.",
-            "I bid you welcome, The Greatest Testing Dragon in town, to my game.",
-            "Hello again, The Greatest Testing Dragon in town.",
-            "Hello The Greatest Testing Dragon in town!",
-            "Hello, The Greatest Testing Dragon in town.",
-            "Hello and, again, welcome to my game The Greatest Testing Dragon in town",
+def test_greet(dragon, capsys):
+    dragon.greet()
+    greeting = capsys.readouterr().out
+    assert greeting in [
+            "I bow down to you, Test Dragon.\n",
+            "I bid you welcome, Test Dragon, to my game.\n",
+            "Hello again, Test Dragon.\n",
+            "Hello Test Dragon!\n",
+            "Hello, Test Dragon.\n",
+            "Hello and, again, welcome to my game Test Dragon\n",
+            "I bow down to you, The Greatest Testing Dragon in town.\n",
+            "I bid you welcome, The Greatest Testing Dragon in town, to my game.\n",
+            "Hello again, The Greatest Testing Dragon in town.\n",
+            "Hello The Greatest Testing Dragon in town!\n",
+            "Hello, The Greatest Testing Dragon in town.\n",
+            "Hello and, again, welcome to my game The Greatest Testing Dragon in town\n",
         ]
 
 
-def test_advance_story(dragon):
-    assert dragon._advance_story("Test") == "Test"
+@given(sample_message=text())
+def test_advance_story(dragon, sample_message, capsys):
+    dragon.advance_story(sample_message)
+    story_message = capsys.readouterr().out
+    assert story_message == sample_message + "\n"
