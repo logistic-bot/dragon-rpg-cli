@@ -1,6 +1,9 @@
 run:
 	python src/main.py
 
+test:
+	pytest --cov=src --cov-config=.coveragerc
+
 commit:
 	git status
 	git diff
