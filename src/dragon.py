@@ -63,7 +63,33 @@ class Dragon:
 
     @staticmethod
     def _advance_story(message, template=None):
-        return message
+        format_str = ""
+
+        if template is None:
+            format_str = "{}"
+
+        elif template == "tutorial":
+            format_str = "[tutorial] {}"
+
+        elif template == "separator":
+            format_str = "{}\n----------------------------------------\n"
+
+        elif template == "chapter":
+            format_str = (
+                "\n\n---------=========[######]=========---------\nChapter {"
+                "}\n---------=========[######]=========---------\n\n"
+            )
+
+        elif template == "description":
+            format_str = "{}\n+++++++\n"
+
+        else:
+            raise NotImplementedError(
+                "Template {} was not found. Contact the programmer or choose "
+                "another template.".format(template)
+            )
+
+        return format_str.format(message)
 
     def advance_story(self, message, template=None):
         """
