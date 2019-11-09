@@ -39,13 +39,7 @@ class Dragon:
         self.title = title
 
     def greet(self):
-        """Greet the Dragon with a random message using either his name or title.
-        The actual work is being done by the helper function self._greet()"""
-        print(self._greet())
-
-    # noinspection PyShadowingNames
-    def _greet(self):
-        """return a greeting for the Dragon with a random message using his name or title.
+        """Greet the Dragon with a random message using his name or title.
         This helper function is used by self.greet()"""
         greetings = [
             "I bow down to you, {}.",
@@ -59,13 +53,31 @@ class Dragon:
         greeting = random.choice(greetings)
         name = random.choice([self.title, self.name])
 
-        return greeting.format(name)
+        greeting = greeting.format(name)
+        print(greeting)
+        return greeting
 
-    @staticmethod
-    def _advance_story(message, template=None):
-        format_str = ""
+    def advance_story(self, message, template=None):
+        """
+        Prints a user provided message to stdout, adding some (sometime a lot) formatting.
+        The template for the formatting is provided using the "template" parameter.
+        A list and a description of the available templates can be found in the
+        helper method self._advance_story()
+
+        If you want to understand what the function does, I would advise you to
+        read the self._advance_story()'s method documentation (and code, if you are
+        a programmer)
+
+        :param message: Message to be formatted and shown to the player
+        :param template: Template by which the message should be formatted
+        :return: the printed message
+        """
+        # format_str = ""
 
         if template is None:
+            format_str = "{}"
+
+        elif template == "":
             format_str = "{}"
 
         elif template == "tutorial":
@@ -85,26 +97,12 @@ class Dragon:
 
         else:
             raise NotImplementedError(
-                "Template {} was not found. Contact the programmer or choose "
+                "Template `{}` was not found. Contact the programmer or choose "
                 "another template.".format(template)
             )
 
-        return format_str.format(message)
+        # noinspection PyMethodFirstArgAssignment
+        message = format_str.format(message)
+        print(message)
+        return message
 
-    def advance_story(self, message, template=None):
-        """
-        Prints a user provided message to stdout, adding some formatting using the
-        helper function self._advance_story()
-        The template for the formatting is provided using the "template" parameter.
-        A list and a description of the availible templates can be found in the
-        helper method self._advance_story()
-
-        If you want to understand what the function does, I would advise you to
-        read the self._advance_story()'s method documentation (and code, if you are
-        a programmer)
-
-        :param message: Message to be formatted and shown to the player
-        :param template: Template by which the message should be formatted
-        :return: None
-        """
-        print(self._advance_story(message, template))

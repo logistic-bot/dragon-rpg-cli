@@ -52,6 +52,16 @@ def test_greet(dragon, capsys):
 
 @given(sample_message=text())
 def test_advance_story(dragon, sample_message, capsys):
-    dragon.advance_story(sample_message)
-    story_message = capsys.readouterr().out
-    assert story_message == sample_message + "\n"
+    templates = ["", "tutorial", "separator", "chapter", "description"]
+    templates_result = ["{}", "[tutorial] {}", "{}\n----------------------------------------\n",
+                        "\n\n---------=========[######]=========---------\nChapter {}"
+                        "\n---------=========[######]=========---------\n\n", "{}\n+++++++\n"]
+
+    index = 0
+    for template in templates:
+        dragon.advance_story(sample_message, template)
+
+        story_message = capsys.readouterr().out
+        assert story_message == templates_result[index].format(sample_message) + "\n", template
+
+        index += 1
