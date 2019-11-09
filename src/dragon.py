@@ -27,6 +27,12 @@ class Dragon:
         and max_health_max.
 
         """
+        if max_health_min < 1:
+            raise Exception("Health must be at least 1")
+
+        if max_health_max < max_health_min:
+            raise Exception("max_health_max needs at least to be equal to max_health_min")
+
         self.max_health = random.randint(max_health_min, max_health_max)
         self.health = self.max_health
         self.name = name
