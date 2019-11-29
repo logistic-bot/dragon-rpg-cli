@@ -12,13 +12,14 @@ class Dragon:
 
     # noinspection PyShadowingNames
     def __init__(self, name, title, max_health_min=5000, max_health_max=10000):
-        """
-        Initialises a Dragon Object.
+        """Initialises a Dragon Object.
 
-        name: The name of the dragon. Expected to be in the form `Megamind`
+        name: The name of the dragon. Expected to (but not tested to) be in the
+        form `Megamind`
 
-        title: The title of the dragon. Expected to be in the form `Megamind:
-        Extremely handsome criminal genius and master of all villainy`
+        title: The title of the dragon. Expected to (but not tested to) be in
+        the form `Megamind: Extremely handsome criminal genius and master of all
+        villainy`
 
         max_health_min: The max health is a random number between max_health_min
         and max_health_max.
