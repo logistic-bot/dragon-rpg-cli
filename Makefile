@@ -2,7 +2,7 @@ run:
 	python src/main.py
 
 test:
-	pytest --cov=src --cov-config=.coveragerc
+	pytest --cov=src --cov-config=.coveragerc -v
 
 commit:
 	git status
