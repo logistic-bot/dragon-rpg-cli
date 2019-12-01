@@ -33,7 +33,8 @@ class Dragon:
 
         if (max_health_max < max_health_min) or (max_health_min < 1):
             raise ValueError(
-                "max_health_max needs at least to be equal to max_health_min, and max_health_min must be at least 1"
+                "max_health_max needs at least to be equal to max_health_min,"
+                "and max_health_min must be at least 1"
             )
 
         self.max_health = random.randint(max_health_min, max_health_max)
@@ -61,19 +62,19 @@ class Dragon:
         return greeting
 
     def advance_story(self, message, template=None):
-        """
-        Prints a user provided message to stdout, adding some (sometime a lot) formatting.
-        The template for the formatting is provided using the "template" parameter.
-        A list and a description of the available templates can be found in the
-        helper method self._advance_story()
+        """Prints a user provided message to stdout, adding some (sometime a lot)
+        formatting. The template for the formatting is provided using the
+        "template" parameter. A list and a description of the available
+        templates can be found in the helper method self._advance_story()
 
         If you want to understand what the function does, I would advise you to
-        read the self._advance_story()'s method documentation (and code, if you are
-        a programmer)
+        read the self._advance_story()'s method documentation (and code, if you
+        are a programmer)
 
         :param message: Message to be formatted and shown to the player
         :param template: Template by which the message should be formatted
         :return: the printed message
+
         """
         # format_str = ""
 
