@@ -4,6 +4,8 @@ This module provides the 'Dragon' class.
 It is used thorough the game to represent the player.
 """
 
+from utils import slowprint
+
 import random
 import time
 import sys
@@ -58,7 +60,7 @@ class Dragon:
         name = random.choice([self.title, self.name])
 
         greeting = greeting.format(name)
-        self._print_message(greeting)
+        slowprint(greeting)
         return greeting
 
     def advance_story(self, message, template=None):
@@ -82,25 +84,25 @@ class Dragon:
             format_str = "{}"
 
             message = format_str.format(message)
-            self._print_message(message)
+            slowprint(message)
 
         elif template == "":
             format_str = "{}"
 
             message = format_str.format(message)
-            self._print_message(message)
+            slowprint(message)
 
         elif template == "tutorial":
             format_str = "[tutorial] {}"
 
             message = format_str.format(message)
-            self._print_message(message)
+            slowprint(message)
 
         elif template == "separator":
             format_str = "{}\n----------------------------------------\n"
 
             message = format_str.format(message)
-            self._print_message(message)
+            slowprint(message)
 
             time.sleep(0.5)
 
@@ -119,7 +121,7 @@ class Dragon:
             format_str = "{}\n+++++++\n"
 
             message = format_str.format(message)
-            self._print_message(message)
+            slowprint(message)
 
         else:
             raise NotImplementedError(
