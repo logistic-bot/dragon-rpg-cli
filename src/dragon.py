@@ -5,6 +5,8 @@ It is used thorough the game to represent the player.
 """
 
 import random
+import time
+import sys
 
 
 class Dragon:
@@ -78,14 +80,28 @@ class Dragon:
         if template is None:
             format_str = "{}"
 
+            message = format_str.format(message)
+            self._print_message(message)
+
         elif template == "":
             format_str = "{}"
+
+            message = format_str.format(message)
+            self._print_message(message)
 
         elif template == "tutorial":
             format_str = "[tutorial] {}"
 
+            message = format_str.format(message)
+            self._print_message(message)
+
         elif template == "separator":
             format_str = "{}\n----------------------------------------\n"
+
+            message = format_str.format(message)
+            self._print_message(message)
+
+            time.sleep(0.5)
 
         elif template == "chapter":
             format_str = (
@@ -93,8 +109,16 @@ class Dragon:
                 "}\n---------=========[######]=========---------\n\n"
             )
 
+            message = format_str.format(message)
+            self._print_message(message)
+
+            time.sleep(1)
+
         elif template == "description":
             format_str = "{}\n+++++++\n"
+
+            message = format_str.format(message)
+            self._print_message(message)
 
         else:
             raise NotImplementedError(
@@ -103,7 +127,11 @@ class Dragon:
             )
 
         # noinspection PyMethodFirstArgAssignment
-        message = format_str.format(message)
-        print(message)
         return message
 
+    def _print_message(self, text):
+        for c in text:
+            sys.stdout.write(c)
+            sys.stdout.flush()
+            time.sleep(0.03)
+        sys.stdout.write("\n")
