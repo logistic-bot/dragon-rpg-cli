@@ -58,7 +58,7 @@ class Dragon:
         name = random.choice([self.title, self.name])
 
         greeting = greeting.format(name)
-        print(greeting)
+        self._print_message(greeting)
         return greeting
 
     def advance_story(self, message, template=None):
