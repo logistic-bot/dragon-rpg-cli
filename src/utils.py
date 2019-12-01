@@ -31,4 +31,21 @@ def print_legal_stuff():
     Print legal copyright notice and license information.
     :return: None
     """
-    print(_print_legal_stuff())
+    slowprint(text=_print_legal_stuff(), interval=0.005, end_interval=0)
+
+
+def slowprint(text, interval=0.03, end="\n", end_interval=0.5):
+    for c in text:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        if c == " ":
+            pass
+        else:
+            time.sleep(interval)
+    sys.stdout.write(end)
+    time.sleep(end_interval)
+
+
+def slowinput(text, interval=0.03, end="", end_interval=0):
+    slowprint(text, interval, end, end_interval)
+    return input()
