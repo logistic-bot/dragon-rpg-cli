@@ -130,9 +130,9 @@ class Dragon:
         # noinspection PyMethodFirstArgAssignment
         return message
 
-    def _print_message(self, text):
+    def _print_message(self, text, interval=0.03):
         for c in text:
             sys.stdout.write(c)
             sys.stdout.flush()
-            time.sleep(0.03)
+            time.sleep(interval)
         sys.stdout.write("\n")
