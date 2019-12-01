@@ -107,15 +107,23 @@ class Dragon:
             time.sleep(0.5)
 
         elif template == "chapter":
-            format_str = (
-                "\n\n---------=========[######]=========---------\nChapter {"
-                "}\n---------=========[######]=========---------\n\n"
+            slowprint(
+                "\n\n---------=========["
+                + ("#" * len("Chapter " + message))
+                + "]=========---------",
+                end_interval=0,
+            )
+            slowprint(
+                (" " * 19) + "Chapter {}".format(message), interval=0.1, end_interval=0
+            )
+            slowprint(
+                "---------=========["
+                + ("#" * len("Chapter " + message))
+                + "]=========---------\n\n",
+                end_interval=0,
             )
 
-            message = format_str.format(message)
-            self._print_message(message)
-
-            time.sleep(1)
+            time.sleep(3)
 
         elif template == "description":
             format_str = "{}\n+++++++\n"
@@ -131,10 +139,3 @@ class Dragon:
 
         # noinspection PyMethodFirstArgAssignment
         return message
-
-    def _print_message(self, text, interval=0.03, end="\n"):
-        for c in text:
-            sys.stdout.write(c)
-            sys.stdout.flush()
-            time.sleep(interval)
-        sys.stdout.write(end)
