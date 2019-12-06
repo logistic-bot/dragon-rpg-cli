@@ -42,7 +42,7 @@ class Dragon:
         self.name = name
         self.title = title
 
-    def greet(self):
+    def greet(self, fast=False):
         """Greet the Dragon with a random message using his name or title.
         This helper function is used by self.greet()"""
         greetings = [
@@ -58,10 +58,10 @@ class Dragon:
         name = random.choice([self.title, self.name])
 
         greeting = greeting.format(name)
-        slowprint(greeting)
+        slowprint(greeting, fast=fast)
         return greeting
 
-    def advance_story(self, message, template=None):
+    def advance_story(self, message, template=None, fast=False):
         """Prints a user provided message to stdout, adding some (sometime a lot)
         formatting. The template for the formatting is provided using the
         "template" parameter. A list and a description of the available
@@ -82,57 +82,52 @@ class Dragon:
             format_str = "{}"
 
             message = format_str.format(message)
-            slowprint(message)
+            slowprint(message, fast=fast)
 
         elif template == "":
             format_str = "{}"
 
             message = format_str.format(message)
-            slowprint(message)
+            slowprint(message, fast=fast)
 
         elif template == "tutorial":
             format_str = "[tutorial] {}"
 
             message = format_str.format(message)
-            slowprint(message)
+            slowprint(message, fast=fast)
 
         elif template == "separator":
             format_str = "{}\n----------------------------------------\n"
 
             message = format_str.format(message)
-            slowprint(message)
+            slowprint(message, fast=fast)
 
-            time.sleep(0.5)
+            wait(0.5, fast=fast)
 
         elif template == "chapter":
             slowprint(
-                "\n\n---------=========["
-                + ("#" * len("Chapter " + message))
-                + "]=========---------",
+                "\n\n---------=========[" + ("#" * len("Chapter " + message)) + "]=========---------",
                 end_interval=0,
+                fast=fast,
             )
+            slowprint((" " * 19) + "Chapter {}".format(message), interval=0.1, end_interval=0, fast=fast)
             slowprint(
-                (" " * 19) + "Chapter {}".format(message), interval=0.1, end_interval=0
-            )
-            slowprint(
-                "---------=========["
-                + ("#" * len("Chapter " + message))
-                + "]=========---------\n\n",
+                "---------=========[" + ("#" * len("Chapter " + message)) + "]=========---------\n\n",
                 end_interval=0,
+                fast=fast,
             )
 
-            time.sleep(3)
+            wait(3, fast=fast)
 
         elif template == "description":
             format_str = "{}\n+++++++\n"
 
             message = format_str.format(message)
-            slowprint(message)
+            slowprint(message, fast=fast)
 
         else:
             raise NotImplementedError(
-                "Template `{}` was not found. Contact the programmer or choose "
-                "another template.".format(template)
+                "Template `{}` was not found. Contact the programmer or choose " "another template.".format(template)
             )
 
         # noinspection PyMethodFirstArgAssignment

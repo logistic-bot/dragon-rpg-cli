@@ -10,5 +10,9 @@ class Room:
     def _describe(self):
         return self.description
 
-    def describe(self):
-        print(self._describe())
+    def describe(self, fast=False):
+        """Slowprints a description of the room, including all its items, to the user"""
+        slowprint(self._describe(), fast=fast)
+
+        for item in self.items:
+            slowprint(item.description)
