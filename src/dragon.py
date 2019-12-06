@@ -4,11 +4,10 @@ This module provides the 'Dragon' class.
 It is used thorough the game to represent the player.
 """
 
-from utils import slowprint
-
 import random
-import time
-import sys
+
+from utils import slowprint
+from utils import wait
 
 
 class Dragon:
@@ -35,8 +34,7 @@ class Dragon:
 
         if (max_health_max < max_health_min) or (max_health_min < 1):
             raise ValueError(
-                "max_health_max needs at least to be equal to max_health_min,"
-                "and max_health_min must be at least 1"
+                "max_health_max needs at least to be equal to max_health_min," "and max_health_min must be at least 1"
             )
 
         self.max_health = random.randint(max_health_min, max_health_max)

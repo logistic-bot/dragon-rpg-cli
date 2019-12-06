@@ -3,8 +3,8 @@ This module provides utils functions for the game, such as copyright notice
 """
 
 from os.path import abspath
+from time import sleep
 import sys
-import time
 
 
 def _print_legal_stuff(full=False):
@@ -13,13 +13,13 @@ def _print_legal_stuff(full=False):
         with open(abspath("../LICENSE"), "r") as file:
             return file.read()
     else:
-        LICENSE = """
+        licence_str = """
         Dragon RPG  Copyright (C) 2019 Khaïs COLIN
     This program comes with ABSOLUTELY NO WARRANTY; for details type `license'.
     This is free software, and you are welcome to redistribute it
     under certain conditions; type `license' for details.
 """
-        return LICENSE
+        return licence_str
 
 
 def print_legal_stuff():

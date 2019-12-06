@@ -22,16 +22,15 @@ def dragon():
     sample_health_max=integers(2, 10000000),
     sample_health_min=integers(1, 10000000),
 )
-def test_attributes_are_correct(
-    sample_name, sample_title, sample_health_max, sample_health_min
-):
+def test_attributes_are_correct(sample_name, sample_title,
+                                sample_health_max, sample_health_min):
     # assume
     assume(sample_health_max >= sample_health_min)
 
     # setup
-    sample_dragon = src.dragon.Dragon(
-        sample_name, sample_title, sample_health_min, sample_health_max
-    )
+    sample_dragon = src.dragon.Dragon(sample_name, sample_title,
+                                      sample_health_min,
+                                      sample_health_max)
 
     # act
 
