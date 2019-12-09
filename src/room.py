@@ -1,6 +1,6 @@
 """This file contains the `Room` class."""
 
-from utils import slowprint
+from src.utils import slowprint
 
 
 class Room:

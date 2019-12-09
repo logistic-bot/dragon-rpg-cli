@@ -3,6 +3,10 @@ from hypothesis.strategies import text
 
 from src.room import Room
 
+import sys
+
+sys.path.append("../src")
+
 
 @given(sample_name=text(), sample_description=text())
 def test_room_describe(sample_name, sample_description, capsys):
@@ -10,7 +14,7 @@ def test_room_describe(sample_name, sample_description, capsys):
     room_to_test = Room(sample_name, sample_description)
 
     # act
-    room_to_test.describe()
+    room_to_test.describe(fast=True)
     provided_description = capsys.readouterr().out
 
     # assert

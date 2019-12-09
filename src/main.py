@@ -5,6 +5,7 @@ The main file of the Dragon RPG.
 
 E V E R Y T H I N G is happening from this file
 """
+
 from sys import argv
 
 from chapters.chapter1 import chapter1

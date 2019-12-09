@@ -6,8 +6,8 @@ It is used thorough the game to represent the player.
 
 import random
 
-from utils import slowprint
-from utils import wait
+from src.utils import slowprint
+from src.utils import wait
 
 
 class Dragon:

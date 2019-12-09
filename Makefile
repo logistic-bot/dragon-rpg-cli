@@ -1,8 +1,11 @@
+fast:
+	python src/main.py fast
+
 run:
 	python src/main.py
 
 test:
-	pytest --cov=src --cov-config=.coveragerc -v
+	pytest --cov=src --cov-config=.coveragerc -vv
 
 commit:
 	git status
