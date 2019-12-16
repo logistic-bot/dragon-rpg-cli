@@ -27,14 +27,10 @@ def print_legal_stuff(fast=False):
     Print legal copyright notice and license information.
     :return: None
     """
-    if fast:
-        interval = 0
-    else:
-        interval = 0.005
-    slowprint(text=_print_legal_stuff(), interval=interval, end_interval=0)
+    slowprint(text=_print_legal_stuff(), fast=fast)
 
 
-def slowprint(text, interval=0.03, end="\n", end_interval=0.5, fast=False):
+def slowprint(text, interval=0.02, end="\n", end_interval=0.5, fast=False, charcount_interval=1):
     """Print the given text slowly.
 
     Does not wait if a char is ` `
@@ -50,11 +46,8 @@ def slowprint(text, interval=0.03, end="\n", end_interval=0.5, fast=False):
     for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()
-        if char == " ":
-            pass
-        else:
-            if not fast:
-                sleep(interval)
+        if char != " " and not fast:
+            sleep(interval)
     sys.stdout.write(end)
     if not fast:
         sleep(end_interval)
@@ -75,7 +68,28 @@ def wait(time, fast=False):
 
     This is used to add dramatic pauses, which can be disabled by the user
     """
-    if fast:
-        pass
-    else:
+    if not fast:
         sleep(time)
+
+
+def ask_y_n(fast):
+    action = "DUMMY ACTION"  # needed to avert an index out of range error
+    while not action.strip().lower()[0] in ["y", "n"]:  # ensure that a valid input is given
+        action = slowinput("[y/n]> ", fast=fast)
+        if action == "":
+            action = "DUMMY ACTION"
+
+    if cleanup_string(action)[0] == "y":
+        return True
+    else:
+        return False
+
+
+def cleanup_string(action):
+    action = action.lower()
+    action = action.strip()
+    action = action.strip(".")
+    action = action.strip("!")
+    action = action.strip("?")
+    action = action.strip()
+    return action
