@@ -6,8 +6,7 @@ It is used thorough the game to represent the player.
 
 import random
 
-from src.utils import slowprint
-from src.utils import wait
+from utils import slowprint, wait
 
 
 class Dragon:
@@ -41,6 +40,8 @@ class Dragon:
         self.health = self.max_health
         self.name = name
         self.title = title
+
+        self.inventory = []
 
     def greet(self, fast=False):
         """Greet the Dragon with a random message using his name or title.
@@ -76,15 +77,8 @@ class Dragon:
         :return: the printed message
 
         """
-        # format_str = ""
 
-        if template is None:
-            format_str = "{}"
-
-            message = format_str.format(message)
-            slowprint(message, fast=fast)
-
-        elif template == "":
+        if template is None or template == "":
             format_str = "{}"
 
             message = format_str.format(message)
@@ -110,7 +104,9 @@ class Dragon:
                 end_interval=0,
                 fast=fast,
             )
-            slowprint((" " * 19) + "Chapter {}".format(message), interval=0.1, end_interval=0, fast=fast)
+            slowprint(
+                (" " * 19) + "Chapter {}".format(message), interval=0.1, end_interval=0, fast=fast, charcount_interval=1
+            )
             slowprint(
                 "---------=========[" + ("#" * len("Chapter " + message)) + "]=========---------\n\n",
                 end_interval=0,

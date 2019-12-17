@@ -1,2 +1,3 @@
-import sys
-sys.path.append("./src/")
+"""__init__.py - solves import problems"""
+
+from . import src

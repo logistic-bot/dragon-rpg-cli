@@ -10,10 +10,7 @@ from sys import argv
 
 from chapters.chapter1 import chapter1
 from dragon import Dragon
-from utils import slowprint, slowinput
-from utils import wait
-
-import utils
+from utils import slowprint, slowinput, wait, print_legal_stuff
 
 if __name__ == "__main__":
     if "fast" in argv:
@@ -21,7 +18,7 @@ if __name__ == "__main__":
     else:
         FASTPRINT = False
 
-    utils.print_legal_stuff(FASTPRINT)
+    print_legal_stuff(FASTPRINT)
 
     wait(3, FASTPRINT)
 
