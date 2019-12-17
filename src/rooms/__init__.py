@@ -1,3 +1,3 @@
 """__init__.py - solves import problems"""
 
-from . import src, tests
+from . import base_room, start_cave

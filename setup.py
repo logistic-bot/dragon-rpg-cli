@@ -18,7 +18,7 @@ URL = "https://github.com/nico_nico/dragon-rpg-cli"
 EMAIL = "kh.col@orange.fr"
 AUTHOR = "Khaïs COLIN"
 REQUIRES_PYTHON = ">=3.6.0"
-VERSION = "0.1.1"
+VERSION = "0.1.3"
 
 # What packages are required for this module to be executed?
 REQUIRED = []
@@ -54,7 +54,9 @@ else:
 class UploadCommand(Command):
     """Support setup.py upload."""
 
+    # noinspection PyUnusedName
     description = "Build and publish the package."
+    # noinspection PyUnusedName
     user_options = []
 
     @staticmethod
@@ -62,9 +64,11 @@ class UploadCommand(Command):
         """Prints things in bold."""
         print("\033[1m{0}\033[0m".format(s))
 
+    # noinspection PyUnusedFunction
     def initialize_options(self):
         pass
 
+    # noinspection PyUnusedFunction
     def finalize_options(self):
         pass
 

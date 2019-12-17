@@ -1,11 +1,14 @@
 import pytest
+import sys, os
 from hypothesis import given, assume, note
 from hypothesis.strategies import integers
 from hypothesis.strategies import text
 
-from src import dragon
+myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.abspath(os.path.join(myPath, os.pardir, "src"))) # this adds
+# dragon-rpg-cli/src to sys.path DO NOT MODIFY
 
-print(type(dragon))
+from src import dragon
 
 
 @pytest.fixture()

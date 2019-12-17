@@ -1,7 +1,7 @@
 from hypothesis import given
 from hypothesis.strategies import text
 
-from src.room import Room
+from src.rooms.base_room import Room
 
 import sys
 
